@@ -1,7 +1,7 @@
 clc;
 clear all;
 close all;
-path='E:\GIT\processed\averaged';
+path='.\processed\averaged';
 a=dir(fullfile(path,'*.mat'));
 fs=256;%采样频率
 N=53;%采样点数
@@ -91,7 +91,7 @@ for ii=1:length(a)
     PSD_beta_sub_stimu{ii,1}=PSD_beta_tr;%单个被试所有试次beta功率
     clear PSD_delta_tr PSD_theta_tr PSD_alpha_tr PSD_beta_tr
 end
-save('E:\GIT\processed\PSD\stimu\PSD_delta_sub_stimu.mat', 'PSD_delta_sub_stimu');
-save('E:\GIT\processed\PSD\stimu\PSD_theta_sub_stimu.mat', 'PSD_theta_sub_stimu');
-save('E:\GIT\processed\PSD\stimu\PSD_alpha_sub_stimu.mat', 'PSD_alpha_sub_stimu');
-save('E:\GIT\processed\PSD\stimu\PSD_beta_sub_stimu.mat', 'PSD_beta_sub_stimu');
+save('.\processed\PSD\stimu\PSD_delta_sub_stimu.mat', 'PSD_delta_sub_stimu');
+save('.\processed\PSD\stimu\PSD_theta_sub_stimu.mat', 'PSD_theta_sub_stimu');
+save('.\processed\PSD\stimu\PSD_alpha_sub_stimu.mat', 'PSD_alpha_sub_stimu');
+save('.\processed\PSD\stimu\PSD_beta_sub_stimu.mat', 'PSD_beta_sub_stimu');
