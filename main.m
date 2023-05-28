@@ -17,6 +17,7 @@ RSVP_PSD_stimu;
 topoplot_PSD;
 
 % 统计分析
+sts;
 
 %% 时频域
 
