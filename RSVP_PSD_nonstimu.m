@@ -1,7 +1,7 @@
 clc;
 clear all;
 close all;
-path='.\processed\averaged';
+path='.\processed\averaged-10';
 a=dir(fullfile(path,'*.mat'));
 fs=256;%采样频率
 N=53;%采样点数

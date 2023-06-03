@@ -2,7 +2,7 @@ clc
 clear all
 close all
 
-data_path='.\processed\averaged\';
+data_path='.\processed\averaged-10\';
 data_con_path=strcat(data_path,'\');
 File = dir(fullfile(data_con_path));
 FileNames = {File.name};
