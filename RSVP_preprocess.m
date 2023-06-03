@@ -2,8 +2,8 @@ clear all£»
 close all;
 clc;
 % eeglab
-data_path='.\original\5-Hz\';    %%orgin data path
-save_path='.\processed\';   %%the path where to save processed data
+data_path='.\original\6-Hz\';    %%orgin data path
+save_path='.\processed\6-Hz\';   %%the path where to save processed data
 data_con_path=strcat(data_path,'\');
 File = dir(fullfile(data_con_path));
 FileNames = {File.name};

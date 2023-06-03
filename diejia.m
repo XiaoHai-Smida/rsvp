@@ -4,7 +4,7 @@ clc;
 % eeglab
 addpath .\func
 
-data_path='.\processed\5-Hz\';   %%the path where to save processed data
+data_path='.\processed\6-Hz\';   %%the path where to save processed data
 save_path='.\processed\averaged\';
 data_con_path=strcat(data_path,'\');
 File = dir(fullfile(data_con_path));

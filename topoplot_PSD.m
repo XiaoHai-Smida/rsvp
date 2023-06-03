@@ -6,7 +6,7 @@ path2='.\processed\PSD\nonstimu';
 
 a=dir(fullfile(path1,'*.mat'));
 b=dir(fullfile(path2,'*.mat'));
-subj = 20;                                              %09号数据存在异常，需手动删除09a/b
+subj = 18;                                              %09号数据存在异常，需手动删除09a/b
 
 %% 平均
 for i=1:length(a)
