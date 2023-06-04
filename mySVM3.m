@@ -1,11 +1,12 @@
 % SVM 分类器
+% 数据不做叠加平均。
+
 clc
 clear
 close all
 
-load('.\processed\cwt\10\cwt_beta_sub_stimu.mat')
-load('.\processed\cwt\10\cwt_beta_sub_nonstimu.mat')
-
+load('.\processed\cwt\6\cwt_beta_sub_stimu.mat')
+load('.\processed\cwt\6\cwt_beta_sub_nonstimu.mat')
 
 %% 提取数据
 
@@ -46,10 +47,11 @@ idx1 = class1_idx;
 X = X([idx0;idx1],:);
 Y = Y([idx0;idx1],:);
 
-rand_int = unique(randperm(114, 25));   % 找25个目标和非目标作为test
-group = zeros(114*2,1);
+rand_int = unique(randperm(300, 75));   % 找25个目标和非目标作为test
+group = zeros(75*2,1);
 
-group([rand_int,rand_int+114]) = 1;
+start1 = min(find(Y==1));   % 标签1开始标志
+group([rand_int,rand_int+start1]) = 1;
 
 
 %% 
@@ -91,9 +93,18 @@ Ytest = Ylabel(find(group==1),:);
     
 svmModel = fitcsvm(Xtrain,Ytrain, 'OptimizeHyperparameters', 'auto', ...
 'HyperparameterOptimizationOptions', opts, ...
-'KernelFunction', 'polynomial', 'KernelScale', 'auto', ...
+'KernelFunction', 'linear', 'KernelScale', 'auto', ...
 'Standardize', true, 'ClassNames', ClassNames, ...
  'CacheSize', 'maximal');
+% 使用 Sigmoid 核函数进行 SVM 二分类
+% svmModel = fitcsvm(Xtrain, Ytrain, 'KernelFunction', 'sigmoid', 'BoxConstraint', 1, 'KernelScale', 0.1);
+% 使用多项式核函数进行 SVM 二分类
+
+
+% for i = 10:20
+%     fprintf('\n#### PolynomialOrder=%d ####\n',i)
+% svmModel = fitcsvm(Xtrain, Ytrain, 'KernelFunction', 'polynomial', 'PolynomialOrder', i);
+
 predictedY = predict(svmModel,Xtest);
 C = confusionmat(Ytest,predictedY);
 accuracy = sum(diag(C))/sum(C(:));
@@ -101,6 +112,7 @@ accuracy = sum(diag(C))/sum(C(:));
 precision = C(1,1) / (C(1,1) + C(2,1));
 recall = C(1,1) / (C(1,1) + C(1,2));
 F1_score = 2 * precision * recall / (precision + recall);
+
     
 
 
@@ -111,3 +123,5 @@ F1_score = 2 * precision * recall / (precision + recall);
 
 fprintf('---\n Precision: %2.2f%% \n Recall: %2.2f%% \n F1 score: %1.4f \n---\n',...
     precision*100,recall*100,F1_score);
+
+% end

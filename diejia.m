@@ -4,8 +4,8 @@ clc;
 % eeglab
 addpath .\func
 
-data_path='.\processed\10-Hz\';   %%the path where to save processed data
-save_path='.\processed\averaged-10\';
+data_path='.\processed\5-Hz\';   %%the path where to save processed data
+save_path='.\processed\averaged-5\';
 data_con_path=strcat(data_path,'\');
 File = dir(fullfile(data_con_path));
 FileNames = {File.name};
@@ -25,6 +25,7 @@ for count = 4:2:le  %取目标
     data = temp_data;
     clear temp_data
     zz = fix(z/1); %取商    
+%     zz = fix(z/10); %取商   
     for i = 1:zz
         avg1(:,:,i) = mean(data(:,:,1*(i-1)+1:1*i),3);
 %         avg1(:,:,i) = mean(data(:,:,10*(i-1)+1:10*i),3);

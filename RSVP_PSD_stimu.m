@@ -1,6 +1,8 @@
 clc;
 clear all;
 close all;
+
+
 path='.\processed\averaged';
 a=dir(fullfile(path,'*.mat'));
 fs=256;%²ÉÑùÆµÂÊ
