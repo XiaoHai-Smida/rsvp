@@ -20,5 +20,15 @@ topoplot_PSD;
 sts;
 
 %% 时频域
+RSVP_cwt_nonstimu;
 
-%% 熵
+RSVP_cwt_stimu;
+
+sts;
+
+%% 分类器
+mySVM2;      % 5 6 10 合在一起
+
+mySVM1;     % 6Hz
+
+mySVM3;

@@ -3,15 +3,14 @@ clc
 clear
 close all
 
-load('D:\GIT\processed\cwt\stimu\cwt_beta_sub_stimu.mat')
-load('D:\GIT\processed\cwt\nonstimu\cwt_beta_sub_nonstimu.mat')
-
+load('D:\GIT\processed\cwt\6\cwt_beta_sub_stimu.mat')
+load('D:\GIT\processed\cwt\6\cwt_beta_sub_nonstimu.mat')
 
 %% 提取数据
 target = cwt_beta_sub_stimu;
 ntarget = cwt_beta_sub_nonstimu;
 
-T = ones(1,8); NT = ones(1,8);  % 初始化
+T = []; NT = [];  % 初始化
 
 subj = size(target,1);
 
@@ -23,13 +22,10 @@ for s = 1:subj
     NT = [NT;temp];
 end
 
-T(1,:) = [];
-NT(1,:) = [];
-
 X = [T; NT];% 所有特征
 Y = [ones(size(T,1),1);zeros(size(NT,1),1)];% 特征对应的目标【数字形式】
 
-t = templateSVM('kernelfunction','linear','standardize',true); % 设置SVM分类器参数
+t = templateSVM('kernelfunction','linear','standardize',true); % 设置方法一SVM分类器参数
 ClassNames = {'Target', 'Notarget'};% 分类
 
 % 特征对应的目标【标签形式】
@@ -60,6 +56,8 @@ error_test = 0;
 for i = 1:50
     Index((i-1)*7+1:i*7,1) = group';
 end
+
+
 opts = struct('Optimizer','bayesopt', 'ShowPlots',true);
 
 for g = 1:7
@@ -91,7 +89,8 @@ for g = 1:7
      'CacheSize', 'maximal');
     predictedY = predict(svmModel,Xtest);
     C = confusionmat(Ytest,predictedY);
-    accuracy(g) = sum(diag(C))/sum(C(:));
+    % accuracy(g) = sum(diag(C))/sum(C(:));
+    
     precision(g) = C(1,1) / (C(1,1) + C(2,1));
     recall(g) = C(1,1) / (C(1,1) + C(1,2));
     F1_score(g) = 2 * precision(g) * recall(g) / (precision(g) + recall(g));

@@ -1,7 +1,7 @@
 clc;
 clear all;
 close all;
-freq = 5       % 5/6/10
+freq = 10       % 5/6/10
 path=['.\processed\averaged-',num2str(freq)];
 a=dir(fullfile(path,'*.mat'));
 fs=256;%采样频率
@@ -24,6 +24,7 @@ for ii=1:length(a)
     end
     end
     cwt_beta_sub_stimu{ii,1}= wt_avg;%所有被试所有试次时频能量
+    wt1_sub(:,ii) = mean(wt_avg,2);
     clear wt_avg
 end 
 

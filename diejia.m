@@ -24,9 +24,10 @@ for count = 4:2:le  %取目标
     end
     data = temp_data;
     clear temp_data
-    zz = fix(z/10); %取商    
+    zz = fix(z/1); %取商    
     for i = 1:zz
-        avg1(:,:,i) = mean(data(:,:,10*(i-1)+1:10*i),3);
+        avg1(:,:,i) = mean(data(:,:,1*(i-1)+1:1*i),3);
+%         avg1(:,:,i) = mean(data(:,:,10*(i-1)+1:10*i),3);
     end
     
     %% 非目标
@@ -42,7 +43,8 @@ for count = 4:2:le  %取目标
     
     zz = 9*zz;
     for i = 1:zz
-        avg0(:,:,i) = mean(data(:,:,10*(i-1)+1:10*i),3);
+        avg0(:,:,i) = mean(data(:,:,1*(i-1)+1:1*i),3);
+%         avg0(:,:,i) = mean(data(:,:,10*(i-1)+1:10*i),3); 
     end
     
     sFile = FileNames(count);

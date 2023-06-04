@@ -128,6 +128,8 @@ svmModel = fitcsvm(Xtrain,Ytrain, 'OptimizeHyperparameters', 'auto', ...
 predictedY = predict(svmModel,Xtest);
 C = confusionmat(Ytest,predictedY);
 accuracy = sum(diag(C))/sum(C(:));
+
+
 precision = C(1,1) / (C(1,1) + C(2,1));
 recall = C(1,1) / (C(1,1) + C(1,2));
 F1_score = 2 * precision * recall / (precision + recall);
