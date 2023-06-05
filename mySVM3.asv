@@ -51,10 +51,10 @@ Y = Y([idx0;idx1],:);
 
 kk = fix(k/10*2);
 rand_int = unique(randperm(k, kk));   % 找25个目标和非目标作为test
-group = zeros(k*2,1);
+group = zeros(kk*2,1);
 
-end0 = max(find(Y==0));   % 标签1开始标志
-group([rand_int,rand_int+end0]) = 1;
+start1 = min(find(Y==1));   % 标签1开始标志
+group([rand_int,rand_int+start1-1]) = 1;
 
 
 %% 

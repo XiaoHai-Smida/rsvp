@@ -1,7 +1,7 @@
 clc;
 clear all;
 close all;
-freq = 6       % 5/6/10
+freq = 6 ;      % 5/6/10
 path=['.\processed\averaged-',num2str(freq)];
 a=dir(fullfile(path,'*.mat'));
 fs=256;%²ÉÑùÆµÂÊ
